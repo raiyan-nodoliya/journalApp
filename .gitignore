@@ -1,0 +1,59 @@
+# Maven
+HELP.md
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Logs
+
+*.log
+logs/
+*.out
+
+# Spring Boot
+
+*.yml
+*.yaml
+
+# STS / Eclipse
+
+.metadata
+.classpath
+.project
+.settings/
+.springBeans
+
+
+# IntelliJ
+
+.idea/
+*.iml
+*.iws
+*.ipr
+/htmlReport
+# VS Code
+
+.vscode/
+
+# OS files
+
+.DS_Store
+Thumbs.db
+
+# Java
+
+*.class
+*.jar
+*.war
+*.ear
+
+# Temporary files
+
+*.tmp
+*.temp
