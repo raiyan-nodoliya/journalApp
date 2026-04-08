@@ -5,11 +5,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.ngineeringdigest.journalApp.Entity.User;
 import com.ngineeringdigest.journalApp.Repository.UserRepository;
 
-@Component
+
+@Service
 public class UserDetailsServiceImp implements UserDetailsService{
 	
 	@Autowired

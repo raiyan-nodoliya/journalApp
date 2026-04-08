@@ -9,12 +9,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import com.ngineeringdigest.journalApp.Entity.User;
 import com.ngineeringdigest.journalApp.Repository.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Component
+
+@Service
 @Slf4j
 public class UserService {
     @Autowired

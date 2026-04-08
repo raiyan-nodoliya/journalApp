@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ngineeringdigest.journalApp.Entity.User;
 import com.ngineeringdigest.journalApp.Repository.UserRepository;
 import com.ngineeringdigest.journalApp.Service.UserService;
+import com.ngineeringdigest.journalApp.Service.WeatherService;
+import com.ngineeringdigest.journalApp.api.response.WeatherResponse;
 
 
 @RestController
@@ -34,6 +36,9 @@ public class UserController {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private WeatherService weatherService;
 	
 	
 
@@ -69,6 +74,25 @@ public class UserController {
 	    userRepository.deleteByUsername(authentication.getName());
 
 	    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+	
+	@GetMapping("/greeting")
+	public ResponseEntity<?> greeting() {
+
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+	    WeatherResponse weatherResponse = weatherService.getWeather("Mumbai");
+
+	    String greeting = "";
+
+	    if (weatherResponse != null && weatherResponse.getCurrent() != null) {
+
+	        greeting = " Weather feels like " + weatherResponse.getCurrent().getFeelslike();
+	    } else {
+	        greeting = " Weather data not available";
+	    }
+
+	    return new ResponseEntity<>("Hi " + authentication.getName() + greeting, HttpStatus.OK);
 	}
 	
 	
