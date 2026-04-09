@@ -18,7 +18,7 @@ import io.jsonwebtoken.security.Keys;
 public class JwtUtil {
 	
 
-	    public static final long JWT_TOKEN_VALIDITY_SECONDS = 1 * 60 ; // 5 minutes
+	    public static final long JWT_TOKEN_VALIDITY_SECONDS = 10 * 60 ; // 5 minutes
 
 	    // ✅ secret should be 64+ chars for HS512; yours is long enough
 	    private final String SECRET_KEY =

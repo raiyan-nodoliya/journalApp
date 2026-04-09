@@ -49,13 +49,25 @@ public class SpringSecurity {
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/journal/**", "/user/**").authenticated()
-                    .requestMatchers("/admin/**").hasRole("ADMIN")
-                    .anyRequest().permitAll()
-                    
+                // 1. Publicly accessible Swagger/OpenAPI paths
+                .requestMatchers(
+                    "/v3/api-docs/**",
+                    "/swagger-ui/**",
+                    "/swagger-ui.html",
+                    "/webjars/**" // Important for loading UI assets
+                ).permitAll()
+                
+                // 2. Role-based restrictions
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                
+                // 3. Authentication required for these
+                .requestMatchers("/journal/**", "/user/**").authenticated()
+                
+                // 4. Everything else
+                .anyRequest().permitAll()
             );
-//            .httpBasic(Customizer.withDefaults());
-        	http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
     
